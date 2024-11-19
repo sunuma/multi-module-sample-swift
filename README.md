@@ -1,7 +1,9 @@
 # multi-module-sample-swift
 
 ## 概要
-- apollo-iosを使用してGraphQLのAPIコードを自動生成する処理を実装（makeコマンド実行時に自動生成されるように変更予定）
+- マルチモジュール、マルチパッケージ構成のサンプル実装
+- クリーンアーキテクチャ
+- GraphQL（自動生成）※makeコマンド実行時に自動生成されるように変更予定
 
 ### Apollo iOS CLI 導入 〜 APIコード自動生成
 multi-module-sampleパッケージを右クリック > Install CLI > Run > Aollow
@@ -12,18 +14,18 @@ $ ./apollo-ios-cli init --schema-namespace SW --module-type embeddedInTarget --t
 生成されたapollo-codegen-config.jsonに以下を追記
 ```
 "schemaDownloadConfiguration": {
-    "downloadMethod": {
-      "introspection": {
-        "endpointURL": "https://swapi-graphql.netlify.app/.netlify/functions/index",
-        "includeDeprecatedInputValues": false,
-        "httpMethod": {
-          "POST": {}
-        },
-        "outputFormat": "JSON"
-      }
-    },
-    "outputPath": "./schema.json"
-  }
+  "downloadMethod": {
+    "introspection": {
+      "endpointURL": "https://swapi-graphql.netlify.app/.netlify/functions/index",
+      "includeDeprecatedInputValues": false,
+      "httpMethod": {
+        "POST": {}
+      },
+      "outputFormat": "JSON"
+    }
+  },
+  "outputPath": "./schema.json"
+}
 ```
 JSON形式のスキーマを取得
 ```
