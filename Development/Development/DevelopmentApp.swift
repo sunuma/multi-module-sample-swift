@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import multi_module_sample
 
 @main
 struct DevelopmentApp: App {

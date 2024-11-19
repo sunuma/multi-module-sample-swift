@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6E3F30BB2CEC4AA500FB1145 /* multi-module-sample in Frameworks */ = {isa = PBXBuildFile; productRef = 6E3F30BA2CEC4AA500FB1145 /* multi-module-sample */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		6E9BA21C2CEC3D36007CEC55 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E3F30BB2CEC4AA500FB1145 /* multi-module-sample in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +77,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E3F30B72CEC46C200FB1145 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6E9BA2012CEC3D34007CEC55 = {
 			isa = PBXGroup;
 			children = (
 				6E9BA20C2CEC3D34007CEC55 /* Production */,
 				6E9BA21E2CEC3D36007CEC55 /* ProductionTests */,
 				6E9BA2282CEC3D36007CEC55 /* ProductionUITests */,
+				6E3F30B72CEC46C200FB1145 /* Frameworks */,
 				6E9BA20B2CEC3D34007CEC55 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +125,7 @@
 			);
 			name = Production;
 			packageProductDependencies = (
+				6E3F30BA2CEC4AA500FB1145 /* multi-module-sample */,
 			);
 			productName = Production;
 			productReference = 6E9BA20A2CEC3D34007CEC55 /* Production.app */;
@@ -591,6 +605,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6E3F30BA2CEC4AA500FB1145 /* multi-module-sample */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "multi-module-sample";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6E9BA2022CEC3D34007CEC55 /* Project object */;
 }
