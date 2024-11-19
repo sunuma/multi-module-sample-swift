@@ -8,21 +8,29 @@
 import SwiftUI
 
 public struct ContentView: View {
+    private var client = APIClient()
+        
+    @State private var titles: [String] = []
+    
     public init() {
         
     }
-    
+        
     public var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        List(titles, id: \.self) { title in
+            Text(title)
         }
-        .padding()
+        .onAppear(perform: {
+            Task {
+                titles = try await client.allTitles()
+            }
+        })
+        .navigationTitle("SW Titles")
     }
 }
 
 #Preview {
-    ContentView()
+    NavigationStack {
+        ContentView()
+    }
 }

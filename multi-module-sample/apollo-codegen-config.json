@@ -1,0 +1,42 @@
+{
+  "schemaNamespace" : "SW",
+  "input" : {
+    "operationSearchPaths" : [
+      "**/*.graphql"
+    ],
+    "schemaSearchPaths" : [
+      "./schema.json"
+    ]
+  },
+  "output" : {
+    "testMocks" : {
+      "none" : {
+      }
+    },
+    "schemaTypes" : {
+      "path" : "./Sources/multi-module-sample/API/Generated",
+      "moduleType" : {
+        "embeddedInTarget" : {
+          "name" : "multi-module-sample"
+        }
+      }
+    },
+    "operations" : {
+      "inSchemaModule" : {
+      }
+    }
+  },
+  "schemaDownloadConfiguration": {
+    "downloadMethod": {
+      "introspection": {
+        "endpointURL": "https://swapi-graphql.netlify.app/.netlify/functions/index",
+        "includeDeprecatedInputValues": false,
+        "httpMethod": {
+          "POST": {}
+        },
+        "outputFormat": "JSON"
+      }
+    },
+    "outputPath": "./schema.json"
+  }
+}

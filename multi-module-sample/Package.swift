@@ -12,11 +12,21 @@ let package = Package(
             name: "multi-module-sample",
             targets: ["multi-module-sample"]),
     ],
+    dependencies: [
+        .package(
+                url: "https://github.com/apollographql/apollo-ios.git",
+                .upToNextMajor(from: "1.0.0")
+            )
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "multi-module-sample"),
+            name: "multi-module-sample",
+            dependencies: [
+                .product(name: "Apollo", package: "apollo-ios"),
+            ]
+        ),
         .testTarget(
             name: "multi-module-sampleTests",
             dependencies: ["multi-module-sample"]
