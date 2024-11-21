@@ -5,10 +5,10 @@
 - クリーンアーキテクチャ
 - GraphQL（自動生成）※makeコマンド実行時に自動生成されるように変更予定
 
-### Apollo iOS CLI 導入 〜 APIコード自動生成
+### Apollo iOS CLI 導入からコードの自動生成までの手順
 multi-module-sampleパッケージを右クリック > Install CLI > Run > Aollow
 ```
-$ cd multi-module-sampleパッケージのパス
+$ cd {project root path}/multi-module-sample
 $ ./apollo-ios-cli init --schema-namespace SW --module-type embeddedInTarget --target-name multi-module-sample
 ```
 生成されたapollo-codegen-config.jsonに以下を追記
@@ -29,13 +29,13 @@ $ ./apollo-ios-cli init --schema-namespace SW --module-type embeddedInTarget --t
 ```
 JSON形式のスキーマを取得
 ```
-$ cd multi-module-sampleパッケージのパス
-$ apollo-ios-cli fetch-schema
+$ cd {project root path}/multi-module-sample
+$ ./apollo-ios-cli fetch-schema
 ```
 apollo-codegen-config.jsonを編集しスキーマのパスと出力先を更新
 ```
 "schemaSearchPaths" : [
-    "./schema.json"
+  "./schema.json"
 ]
 ```
 ```

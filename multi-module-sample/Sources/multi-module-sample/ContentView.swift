@@ -10,27 +10,35 @@ import SwiftUI
 public struct ContentView: View {
     private var client = APIClient()
         
-    @State private var titles: [String] = []
+    @State private var films: [SWFilm] = []
+    @State private var selectedFilm: SWFilm?
     
     public init() {
         
     }
         
     public var body: some View {
-        List(titles, id: \.self) { title in
-            Text(title)
+        NavigationStack {
+            List(films, id: \.self) { film in
+                Button {
+                    selectedFilm = film
+                } label: {
+                    Text(film.title)
+                }
+            }
+            .navigationTitle("StarWars Titles")
         }
         .onAppear(perform: {
             Task {
-                titles = try await client.allTitles()
+                films = try await client.allFilms()
             }
         })
-        .navigationTitle("SW Titles")
+        .sheet(item: $selectedFilm) { film in
+            Text(film.title)
+        }
     }
 }
 
 #Preview {
-    NavigationStack {
-        ContentView()
-    }
+    ContentView()
 }

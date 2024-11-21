@@ -8,7 +8,6 @@
 import Apollo
 import Foundation
 
-@MainActor
 public final class APIClient {
     private let apollo: ApolloClient
     
@@ -25,20 +24,19 @@ public final class APIClient {
         apollo = ApolloClient(networkTransport: transport, store: store)
     }
     
-    func allTitles() async throws -> [String] {
-        try await withCheckedThrowingContinuation({ continution in
+    @MainActor
+    func allFilms() async throws -> [SWFilm] {
+        try await withCheckedThrowingContinuation { continution in
             apollo.fetch(query: SW.AllTitlesQuery()) { result in
                 switch result {
                 case .success(let val):
-                    let titles = val.data?.allFilms?.films?.compactMap({ film in
-                        film?.title
-                    })
-                    continution.resume(returning: titles ?? [])
+                    let films = val.data?.allFilms?.films?.compactMap { $0?.convertTo() } ?? []
+                    continution.resume(returning: films)
                     
                 case .failure(let error):
                     continution.resume(throwing: error)
                 }
             }
-        })
+        }
     }
 }
