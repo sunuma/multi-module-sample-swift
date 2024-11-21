@@ -8,7 +8,11 @@
 import Apollo
 import Foundation
 
-public final class APIClient {
+protocol APIClientProtocol {
+    func allFilms() async throws -> [SWFilm]
+}
+
+public final class APIClient: APIClientProtocol {
     private let apollo: ApolloClient
     
     public init(endpoint: String = "https://swapi-graphql.netlify.app/.netlify/functions/index") {

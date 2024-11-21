@@ -25,6 +25,9 @@ let package = Package(
             name: "multi-module-sample",
             dependencies: [
                 .product(name: "Apollo", package: "apollo-ios"),
+            ],
+            swiftSettings: [
+                .swiftLanguageMode(.v6)
             ]
         ),
         .testTarget(
