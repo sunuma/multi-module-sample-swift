@@ -8,11 +8,11 @@
 import Apollo
 import Foundation
 
-protocol APIClientProtocol {
+protocol APIClientProtocol: Sendable {
     func allFilms() async throws -> [SWFilm]
 }
 
-public final class APIClient: APIClientProtocol {
+public actor APIClient: APIClientProtocol {
     private let apollo: ApolloClient
     
     public init(endpoint: String = "https://swapi-graphql.netlify.app/.netlify/functions/index") {
@@ -28,7 +28,6 @@ public final class APIClient: APIClientProtocol {
         apollo = ApolloClient(networkTransport: transport, store: store)
     }
     
-    @MainActor
     func allFilms() async throws -> [SWFilm] {
         try await withCheckedThrowingContinuation { continution in
             apollo.fetch(query: SW.AllTitlesQuery()) { result in

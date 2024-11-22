@@ -16,7 +16,11 @@ let package = Package(
         .package(
                 url: "https://github.com/apollographql/apollo-ios.git",
                 .upToNextMajor(from: "1.0.0")
-            )
+            ),
+        .package(
+                url: "https://github.com/pointfreeco/swift-concurrency-extras.git",
+                .upToNextMajor(from: "1.0.0")
+            ),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -32,7 +36,10 @@ let package = Package(
         ),
         .testTarget(
             name: "multi-module-sampleTests",
-            dependencies: ["multi-module-sample"]
+            dependencies: [
+                "multi-module-sample",
+                .product(name: "ConcurrencyExtras", package: "swift-concurrency-extras"),
+            ]
         ),
     ]
 )
