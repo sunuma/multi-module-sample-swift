@@ -5,11 +5,12 @@
 //  Created by Shin Unuma on 2024/11/19.
 //
 
-import Apollo
+@preconcurrency import Apollo
 import Foundation
 
 protocol APIClientProtocol: Sendable {
-    func allFilms() async throws -> [SWFilm]
+    @discardableResult
+    func fetch<Query: GraphQLQuery>(query: Query, resultHandler: GraphQLResultHandler<Query.Data>?) -> (any Cancellable)
 }
 
 public actor APIClient: APIClientProtocol {
@@ -28,18 +29,26 @@ public actor APIClient: APIClientProtocol {
         apollo = ApolloClient(networkTransport: transport, store: store)
     }
     
-    func allFilms() async throws -> [SWFilm] {
-        try await withCheckedThrowingContinuation { continution in
-            apollo.fetch(query: SW.AllTitlesQuery()) { result in
-                switch result {
-                case .success(let val):
-                    let films = val.data?.allFilms?.films?.compactMap { $0?.convertTo() } ?? []
-                    continution.resume(returning: films)
-                    
-                case .failure(let error):
-                    continution.resume(throwing: error)
-                }
-            }
-        }
+    nonisolated func fetch<Query: GraphQLQuery>(query: Query, resultHandler: GraphQLResultHandler<Query.Data>?) -> (any Cancellable) {
+        apollo.fetch(query: query, resultHandler: resultHandler)
+    }
+}
+
+// ApolloClientはinit以外で変更されないことが保証されているので強引にSendableに準拠させる
+// ライブラリ側でSendableに準拠されるようであれば
+extension ApolloClient: @unchecked @retroactive Sendable {}
+
+extension ApolloClient {
+    static func setup(endpoint: String) -> ApolloClient {
+        // setup apollo client
+        let cache = InMemoryNormalizedCache()
+        let store = ApolloStore(cache: cache)
+        let client = URLSessionClient()
+        let provider = DefaultInterceptorProvider(client: client, store: store)
+        let transport = RequestChainNetworkTransport(
+            interceptorProvider: provider,
+            endpointURL: URL(string: endpoint)!
+        )
+        return ApolloClient(networkTransport: transport, store: store)
     }
 }

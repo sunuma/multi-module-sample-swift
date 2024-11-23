@@ -8,36 +8,11 @@
 import SwiftUI
 
 public struct ContentView: View {
-    @State private var presenter: any AllFilmsPresenterProtocol
     
-    public init() {
-        _presenter = .init(wrappedValue: AllFilmsPresenter(client: APIClient()))
-    }
+    public init() {}
         
     public var body: some View {
-        NavigationStack {
-            List(presenter.films, id: \.self) { film in
-                Button {
-                    presenter.tap(film: film)
-                } label: {
-                    Text(film.title)
-                }
-            }
-            .navigationTitle("StarWars Titles")
-        }
-        .task {
-            await presenter.onAppear()
-        }
-        .onAppear(perform: {
-            Task {
-            }
-        })
-        .sheet(item: $presenter.selectedFilm) { film in
-            Text(film.title)
-        }
-        .alert(isPresented: $presenter.isShowAlert, error: presenter.apiError) {
-            Button("Close") {}
-        }
+        AllFilmsView()
     }
 }
 

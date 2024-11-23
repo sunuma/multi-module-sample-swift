@@ -15,6 +15,7 @@ protocol AllFilmsPresenterProtocol {
     var apiError: APIError? { get }
     var isLoading: Bool { get set }
     var isShowAlert: Bool { get set }
+    var isEmptyList: Bool { get }
     
     func onAppear() async
     func tap(film: SWFilm)
@@ -28,20 +29,22 @@ final class AllFilmsPresenter: AllFilmsPresenterProtocol {
             isShowAlert = apiError != nil
         }
     }
+    private(set) var isEmptyList: Bool = false
     var selectedFilm: SWFilm?
     var isLoading: Bool = false
     var isShowAlert: Bool = false
     
-    private var client: APIClientProtocol
+    private var repository: APIClientRepository
     
-    init(client: APIClientProtocol = APIClient()) {
-        self.client = client
+    init(repository: APIClientRepository = APIClientRepositoryImpl()) {
+        self.repository = repository
     }
     
     func onAppear() async {
         isLoading = true
         do {
-            films = try await client.allFilms()
+            films = try await repository.allFilms()
+            isEmptyList = films.isEmpty
             isLoading = false
         } catch {
             apiError = .getAllFilms
