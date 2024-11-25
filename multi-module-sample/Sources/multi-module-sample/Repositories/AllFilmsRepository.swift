@@ -1,22 +1,22 @@
 //
-//  APIClientRepository.swift
+//  AllFilmsRepository.swift
 //  multi-module-sample
 //
 //  Created by Shin Unuma on 2024/11/22.
 //
 
-protocol APIClientRepository: Sendable {
-    func allFilms() async throws -> [SWFilm]
+protocol AllFilmsRepository: Sendable {
+    func fetch() async throws -> [SWFilm]
 }
 
-actor APIClientRepositoryImpl: APIClientRepository {
+actor AllFilmsRepositoryImpl: AllFilmsRepository {
     private let apiClient: APIClientProtocol
     
     init(apiClient: APIClientProtocol = APIClient()) {
         self.apiClient = apiClient
     }
     
-    func allFilms() async throws -> [SWFilm] {
+    func fetch() async throws -> [SWFilm] {
         try await withCheckedThrowingContinuation { continution in
             apiClient.fetch(query: SW.AllTitlesQuery()) { result in
                 switch result {

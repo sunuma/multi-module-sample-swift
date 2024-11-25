@@ -1,11 +1,11 @@
 //
-//  MockAPIClientRepository.swift
+//  MockAllFilmsRepository.swift
 //  multi-module-sample
 //
 //  Created by Shin Unuma on 2024/11/23.
 //
 
-actor MockAPIClientRepositoryImpl: APIClientRepository {
+actor MockAllFilmsRepositoryImpl: AllFilmsRepository {
     
     private let films: [SWFilm]
     
@@ -13,7 +13,7 @@ actor MockAPIClientRepositoryImpl: APIClientRepository {
         self.films = films
     }
     
-    func allFilms() async throws -> [SWFilm] {
+    func fetch() async throws -> [SWFilm] {
         films
     }
     

@@ -1,9 +1,8 @@
 # multi-module-sample-swift
 
-## 概要
 - マルチモジュール、マルチパッケージ構成のサンプル実装
-- クリーンアーキテクチャ
-- GraphQL（自動生成）※makeコマンド実行時に自動生成されるように変更予定
+- Clean Architectureで実装
+- GraphQL（apollo-iosを使ってコードを自動生成）
 
 ### Apollo iOS CLI 導入からコードの自動生成までの手順
 multi-module-sampleパッケージを右クリック > Install CLI > Run > Aollow

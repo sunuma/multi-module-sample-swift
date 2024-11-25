@@ -34,16 +34,16 @@ final class AllFilmsPresenter: AllFilmsPresenterProtocol {
     var isLoading: Bool = false
     var isShowAlert: Bool = false
     
-    private var repository: APIClientRepository
+    private var repository: AllFilmsRepository
     
-    init(repository: APIClientRepository = APIClientRepositoryImpl()) {
+    init(repository: AllFilmsRepository = AllFilmsRepositoryImpl()) {
         self.repository = repository
     }
     
     func onAppear() async {
         isLoading = true
         do {
-            films = try await repository.allFilms()
+            films = try await repository.fetch()
             isEmptyList = films.isEmpty
             isLoading = false
         } catch {

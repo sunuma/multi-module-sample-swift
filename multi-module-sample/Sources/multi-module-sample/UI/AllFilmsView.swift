@@ -53,7 +53,7 @@ struct AllFilmsView: View {
 #Preview("Mock") {
     AllFilmsView(
         presenter: AllFilmsPresenter(
-            repository: MockAPIClientRepositoryImpl(
+            repository: MockAllFilmsRepositoryImpl(
                 films: [
                     SWFilm(title: "帝国の逆襲"),
                     SWFilm(title: "フォースの覚醒")
@@ -66,7 +66,7 @@ struct AllFilmsView: View {
 #Preview("Empty") {
     AllFilmsView(
         presenter: AllFilmsPresenter(
-            repository: MockAPIClientRepositoryImpl()
+            repository: MockAllFilmsRepositoryImpl()
         )
     )
 }
