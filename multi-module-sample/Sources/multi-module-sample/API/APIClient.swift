@@ -15,7 +15,7 @@ protocol APIClientProtocol: Sendable {
 
 public actor APIClient: APIClientProtocol {
     private let apollo: ApolloClient
-    
+
     public init(endpoint: String = "https://swapi-graphql.netlify.app/.netlify/functions/index") {
         // setup apollo client
         let cache = InMemoryNormalizedCache()
@@ -28,7 +28,7 @@ public actor APIClient: APIClientProtocol {
         )
         apollo = ApolloClient(networkTransport: transport, store: store)
     }
-    
+
     nonisolated func fetch<Query: GraphQLQuery>(query: Query, resultHandler: GraphQLResultHandler<Query.Data>?) -> (any Cancellable) {
         apollo.fetch(query: query, resultHandler: resultHandler)
     }

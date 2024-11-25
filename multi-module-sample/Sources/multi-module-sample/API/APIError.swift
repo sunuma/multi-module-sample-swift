@@ -10,13 +10,13 @@ import Foundation
 public enum APIError: Error, LocalizedError {
     case getAllFilms
     case unknown(String)
-    
+
     var message: String {
         switch self {
         case .getAllFilms:
-            return "failed to get all films request."
-        case .unknown(let message):
-            return message
+            "failed to get all films request."
+        case let .unknown(message):
+            message
         }
     }
 }

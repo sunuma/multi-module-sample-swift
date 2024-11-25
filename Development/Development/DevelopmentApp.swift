@@ -5,8 +5,8 @@
 //  Created by Shin Unuma on 2024/11/19.
 //
 
-import SwiftUI
 import multi_module_sample
+import SwiftUI
 
 @main
 struct DevelopmentApp: App {

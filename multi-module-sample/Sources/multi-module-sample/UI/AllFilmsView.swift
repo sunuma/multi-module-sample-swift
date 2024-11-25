@@ -9,11 +9,11 @@ import SwiftUI
 
 struct AllFilmsView: View {
     @State private var presenter: any AllFilmsPresenterProtocol
-    
+
     init(presenter: AllFilmsPresenterProtocol = AllFilmsPresenter()) {
         _presenter = .init(wrappedValue: presenter)
     }
-    
+
     public var body: some View {
         NavigationStack {
             Group {
@@ -56,7 +56,7 @@ struct AllFilmsView: View {
             repository: MockAllFilmsRepositoryImpl(
                 films: [
                     SWFilm(title: "帝国の逆襲"),
-                    SWFilm(title: "フォースの覚醒")
+                    SWFilm(title: "フォースの覚醒"),
                 ]
             )
         )

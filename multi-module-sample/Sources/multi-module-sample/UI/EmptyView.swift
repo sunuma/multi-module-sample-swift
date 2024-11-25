@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EmptyView: View {
     var emptyMessage: String = ""
-    
+
     var body: some View {
         VStack {
             Text(emptyMessage)

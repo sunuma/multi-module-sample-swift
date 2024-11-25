@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailView: View {
     var film: SWFilm
-    
+
     var body: some View {
         VStack {
             Text(film.title)

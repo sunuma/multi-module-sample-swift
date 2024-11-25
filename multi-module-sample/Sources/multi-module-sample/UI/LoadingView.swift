@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoadingView: View {
     @Binding var isLoading: Bool
-    
+
     var body: some View {
         ZStack {
             if isLoading {

@@ -8,7 +8,6 @@
 import XCTest
 
 final class ProductionUITests: XCTestCase {
-
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
@@ -30,5 +29,4 @@ final class ProductionUITests: XCTestCase {
         let button = app.buttons["A New Hope"]
         button.tap()
     }
-
 }

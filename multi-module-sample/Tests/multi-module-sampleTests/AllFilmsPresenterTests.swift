@@ -5,11 +5,10 @@
 //  Created by Shin Unuma on 2024/11/21.
 //
 
-import Testing
 @testable import multi_module_sample
+import Testing
 
 actor AllFilmsPresenterTests {
-    
     @MainActor
     @Test func testAppear() async throws {
         let presenter: AllFilmsPresenterProtocol = AllFilmsPresenter()
@@ -17,10 +16,10 @@ actor AllFilmsPresenterTests {
         await presenter.onAppear()
         #expect(!presenter.films.isEmpty)
     }
- 
+
     @MainActor
     @Test func testTap() async throws {
-        let film: SWFilm = SWFilm(title: "The Force Awakens")
+        let film = SWFilm(title: "The Force Awakens")
         let presenter: AllFilmsPresenterProtocol = AllFilmsPresenter()
         #expect(presenter.selectedFilm == nil)
         presenter.tap(film: film)

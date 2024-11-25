@@ -5,10 +5,10 @@
 //  Created by Shin Unuma on 2024/11/21.
 //
 
-import Observation
 import Foundation
+import Observation
 
-@MainActor 
+@MainActor
 protocol AllFilmsPresenterProtocol {
     var films: [SWFilm] { get }
     var selectedFilm: SWFilm? { get set }
@@ -16,7 +16,7 @@ protocol AllFilmsPresenterProtocol {
     var isLoading: Bool { get set }
     var isShowAlert: Bool { get set }
     var isEmptyList: Bool { get }
-    
+
     func onAppear() async
     func tap(film: SWFilm)
 }
@@ -29,17 +29,18 @@ final class AllFilmsPresenter: AllFilmsPresenterProtocol {
             isShowAlert = apiError != nil
         }
     }
+
     private(set) var isEmptyList: Bool = false
     var selectedFilm: SWFilm?
     var isLoading: Bool = false
     var isShowAlert: Bool = false
-    
+
     private var repository: AllFilmsRepository
-    
+
     init(repository: AllFilmsRepository = AllFilmsRepositoryImpl()) {
         self.repository = repository
     }
-    
+
     func onAppear() async {
         isLoading = true
         do {
@@ -51,9 +52,8 @@ final class AllFilmsPresenter: AllFilmsPresenterProtocol {
             isLoading = false
         }
     }
-    
+
     func tap(film: SWFilm) {
         selectedFilm = film
     }
-    
 }

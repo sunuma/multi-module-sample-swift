@@ -8,7 +8,6 @@
 import XCTest
 
 final class DevelopmentUITests: XCTestCase {
-
     override func setUpWithError() throws {
         continueAfterFailure = false
 
@@ -23,9 +22,8 @@ final class DevelopmentUITests: XCTestCase {
     func testLaunch() throws {
         let app = XCUIApplication()
         app.launch()
-        
+
         let button = app.buttons["A New Hope"]
         button.tap()
     }
-
 }
