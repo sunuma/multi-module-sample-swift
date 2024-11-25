@@ -1,0 +1,11 @@
+# Swift Version
+
+--swiftversion 6.0 # Xcode 16.0
+
+# Exclud File
+
+## SmallTalkPackage
+--exclude ./multi-module-sample/.build
+--exclude ./multi-module-sample/.swiftpm
+--exclude ./multi-module-sample/apollo-ios-cli
+--exclude ./multi-module-sample/Sources/multi-module-sample/API/Generated

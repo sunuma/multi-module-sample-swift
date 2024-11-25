@@ -10,17 +10,23 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "multi-module-sample",
-            targets: ["multi-module-sample"]),
+            targets: ["multi-module-sample"]
+        ),
     ],
     dependencies: [
         .package(
-                url: "https://github.com/apollographql/apollo-ios.git",
-                .upToNextMajor(from: "1.0.0")
-            ),
+            url: "https://github.com/apollographql/apollo-ios.git",
+            .upToNextMajor(from: "1.0.0")
+        ),
         .package(
-                url: "https://github.com/pointfreeco/swift-concurrency-extras.git",
-                .upToNextMajor(from: "1.0.0")
-            ),
+            url: "https://github.com/pointfreeco/swift-concurrency-extras.git",
+            .upToNextMajor(from: "1.0.0")
+        ),
+        // Mint
+        .package(
+            url: "https://github.com/yonaskolb/Mint.git",
+            from: "0.17.5"
+        ),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -31,7 +37,7 @@ let package = Package(
                 .product(name: "Apollo", package: "apollo-ios"),
             ],
             swiftSettings: [
-                .swiftLanguageMode(.v6)
+                .swiftLanguageMode(.v6),
             ]
         ),
         .testTarget(
