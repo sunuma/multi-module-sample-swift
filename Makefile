@@ -16,3 +16,10 @@ mint-bootstrap:
 .PHONY: swiftformat-run
 swiftformat-run:
 	swift run --package-path $(PRODUCT_PACKAGE_PATH) mint run swiftformat ./
+
+
+# GraphQL用のコード生成
+# CLIはXcodeからmulti-module-sampleパッケージを右クリック > Install CLI > Run > Aollow で手動でインストール
+.PHONY: apollo-ios-cli-generate
+apollo-ios-cli-generate:
+	$(PRODUCT_PACKAGE_PATH)/apollo-ios-cli generate --path $(PRODUCT_PACKAGE_PATH)/apollo-codegen-config.json
